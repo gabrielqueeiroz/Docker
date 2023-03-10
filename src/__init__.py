@@ -23,3 +23,13 @@ class UserRepo:
                 return True
             else:
                 return False
+            
+    def delete_user(self, name):
+        with DBConnection() as db:
+            user = db.session.query(UsersModel).filter_by(name=name).first()
+            if user:
+                db.session.delete(user)
+                db.session.commit()
+                return True
+            else:
+                return False

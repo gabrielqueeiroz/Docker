@@ -37,3 +37,12 @@ def update_by_name():
     UserRep.update_user(body["name"], body["new_age"])
 
     return 'OK'
+
+@app.route("/delete", methods=["DELETE"])
+def delete_by_name():
+    UserRep = UserRepo()
+    body = request.json
+
+    UserRep.delete_user(body["name"])
+
+    return 'OK'
