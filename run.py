@@ -8,6 +8,9 @@ def hello_world():
 
 @app.route("/insert", methods=["POST"])
 def insert():
+    import logging
+    logger=logging.getLogger()
+    logger.error('CHEGOU AQUI')
     userRepo = UserRepo()
     body = request.json
 
