@@ -33,3 +33,14 @@ class UserRepo:
                 return True
             else:
                 return False
+            
+    def all_users(self):
+        with DBConnection() as db:
+            users = db.session.query(UsersModel).all()
+            filtered_users = []
+            for user in users:
+                user_dict = user.__dict__
+                if '_sa_instance_state' in user_dict:
+                    del user_dict['_sa_instance_state']
+                filtered_users.append(user_dict)
+            return filtered_users

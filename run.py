@@ -1,5 +1,6 @@
 from src import UserRepo
 from flask import Flask, request, jsonify
+from sqlalchemy import inspect
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
@@ -46,3 +47,14 @@ def delete_by_name():
     UserRep.delete_user(body["name"])
 
     return 'OK'
+
+@app.route("/all_users", methods=["GET"])
+def get_all_users():
+    UserRep = UserRepo()
+    users = UserRep.all_users()
+    print(users)
+
+    if users:
+        return jsonify(users)
+    else:
+        return jsonify({"message": "Users not found"}), 404
