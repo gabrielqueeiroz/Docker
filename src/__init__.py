@@ -13,3 +13,13 @@ class UserRepo:
         with DBConnection() as db:
             user = db.session.query(UsersModel).filter_by(name=name).first()
             return user
+        
+    def update_user(self, name, new_age):
+        with DBConnection() as db:
+            user = db.session.query(UsersModel).filter_by(name=name).first()
+            if user:
+                user.age = new_age
+                db.session.commit()
+                return True
+            else:
+                return False

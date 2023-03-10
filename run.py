@@ -22,13 +22,18 @@ def read():
 
     user = UserRep.read_user(body["name"])
 
-    # Check if user exists
     if user:
-        # Convert user object to dictionary
         user_dict = user.__dict__
-        # Remove unnecessary attributes
         user_dict.pop("_sa_instance_state", None)
-        # Return user data as JSON response
         return jsonify(user_dict)
     else:
         return jsonify({"message": "User not found"})
+    
+@app.route("/update", methods=["PUT"])
+def update_by_name():
+    UserRep = UserRepo()
+    body = request.json
+
+    UserRep.update_user(body["name"], body["new_age"])
+
+    return 'OK'
