@@ -1,6 +1,5 @@
 from .config import DBConnection
 from .entities import Users as UsersModel
-from sqlalchemy import select
 
 class UserRepo:
 
@@ -12,4 +11,5 @@ class UserRepo:
 
     def read_user(self, name):
         with DBConnection() as db:
-            db.session.execute(select(name).values(name=name))
+            user = db.session.query(UsersModel).filter_by(name=name).first()
+            return user
