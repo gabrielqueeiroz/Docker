@@ -8,6 +8,7 @@ class Users(Base):
 
     id = Column(Integer, primary_key=true)
     name = Column(String)
+    age = Column(Integer)
 
     def __repr__(self) -> str:
-        return f"Users [name={self.name}]"
+        return f"Users [name={self.name}, age={self.age}]"

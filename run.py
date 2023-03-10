@@ -8,12 +8,18 @@ def hello_world():
 
 @app.route("/insert", methods=["POST"])
 def insert():
-    import logging
-    logger=logging.getLogger()
-    logger.error('CHEGOU AQUI')
     userRepo = UserRepo()
     body = request.json
 
-    userRepo.insert_user(body["name"])
+    userRepo.insert_user(body["name"], body["age"])
+
+    return 'OK'
+
+@app.route("/read", methods=["GET"])
+def read():
+    UserRepo = UserRepo()
+    body = request.json
+
+    UserRepo.read_user(body["name"])
 
     return 'OK'
