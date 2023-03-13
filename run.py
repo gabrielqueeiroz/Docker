@@ -1,6 +1,6 @@
 from src import UserRepo
 from flask import Flask, request, jsonify
-from sqlalchemy import inspect
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])

@@ -12,6 +12,7 @@ services:
       - ./init:/docker-entrypoint-initdb.d
       - mysqlVolume:/lib/mysql
       - mysqlConfig:/etc/mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password
     ports:
       - 3306:3306
   docker-python:
